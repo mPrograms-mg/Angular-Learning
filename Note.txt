@@ -5,4 +5,4 @@ ng new my-first-app —no-strict —Standalone false —routing false
 
 Note: Angular in end is a JS framework, Changing your DOM 'HTML' at runtime
 
-Skip Test File using this file: --skip-tests
+Skip Test File using this file: ng g c --skip-tests
