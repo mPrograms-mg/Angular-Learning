@@ -1,6 +1,0 @@
-
-Create project using cli
-
-ng new my-first-app —no-strict —Standalone false —routing false
-
-Note: Angular in end is a JS framework, Changing your DOM 'HTML' at runtime

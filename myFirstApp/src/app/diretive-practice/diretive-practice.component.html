@@ -1,0 +1,17 @@
+<h4>diretive-practice works!</h4>
+<button class="btn btn-primary" (click)="toggleLogValue()">
+  Display Details
+</button>
+<h2 *ngIf="isSecretTxt">Secret Password like: tuna</h2>
+<p
+  *ngFor="let item of logValue; let i = index"
+  [ngStyle]="{ backgroundColor: item >= 5 ? 'blue' : 'transparent' }"
+  [ngClass]="{ white: item >= 5 }"
+>
+  {{ item }} + {{ i }}
+</p>
+
+<h3>CUstome Directive</h3>
+
+<p appHighligth>This is Custome Highlight Diretive</p>
+<p appBetterDirective>This is better Highlight Diretive</p>
