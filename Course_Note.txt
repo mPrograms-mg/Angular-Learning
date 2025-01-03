@@ -1,0 +1,31 @@
+
+Create project using cli
+
+ng new my-first-app —no-strict —Standalone false —routing false
+
+Note: Angular in end is a JS framework, Changing your DOM 'HTML' at runtime
+
+
+DataBinding 
+ - It is Communication between html and ts file
+ - Typescrip Code(business Logic) and Template(Html)
+
+String Interpolation => {{data}}
+Property Binding => [Property]= "data"
+Event Binding => (event) = "expression"
+
+
+Two Way DataBinding => [(ngModel)]="data"
+
+Two Way DataBinding need to add FormsModule in App Module
+
+Note: Not using both String Interpolation & Property Binding 
+
+
+What are Directives
+    - Directives are Instructions in the DOM or Directives are classes that add additional behaviour to elements in your App
+
+*ngIf :It is Structural Directives and changing the dom
+*ngStyle: It is Attribute directive set dynamically changes
+
+

@@ -1,0 +1,104 @@
+                                            Fundamentals
+
+1)Component
+    -Class
+    -Template
+    -Metadata   
+
+2)Template Syntax
+    -Interpolation
+    -Property Binding
+    -Event Binding
+    -Two way Binding
+    -Pipes
+    -Template Reference Variables
+
+3)Directives
+    -Component
+    -Structural
+        -ngIf
+        -ngSwitch
+        -ngFor
+    -Attribute
+        -NgClass
+        -NgStyle
+
+4)Component Styling
+    -Class Binding
+    -Style Binding
+
+5)Component Interaction
+    -Input
+    -Output
+    -@Input() @Output()
+    -@ViewChild @ViewChildren
+    -ng-content
+
+6)Lifecycle Methods
+    -ngOnChanges
+    -ngOnInit
+    -ngDoCheck
+    -ngAfterContententInit
+    -ngAfterContententChecked
+    -ngAfterViewInit
+    -ngAfterViewChecked
+    -ngOnDestroy
+
+
+
+                                                Advanced Topic
+
+7)Services
+    -Depedency Injection
+    -Providing Services
+
+8)Observables
+    -Creating Observables
+    -Subscribing to Observables
+    -Executing Observables
+    -Disposing Observables
+    -Operators
+
+9)HTTP Client
+    -Http Client
+    -GET, POST,PUT,DELETE
+    -Typed Response
+    -Error Handling
+    -Interceptors
+
+10)Forms
+    -Template Driven Forms
+        -FormsModule
+        -NgForm
+        -NgModel
+        -NgModelGroup
+        -Tracking State & Validity
+        -Validation & Error Messages
+        -ngSubmit
+    -Reactive Forms
+        -ReactiveFormsModule
+        -FormControl
+        -FormGroup
+        -setValue & patchValue
+        -FormBuilder Service
+        -Validator Functions
+        -FormArray
+        -ngSubmit
+
+11)Routing
+    -RoutingModule
+    -Configuring Routes
+    -RouterOutlet
+    -routerLink
+    -Wildcard Routes
+    -Redirecting Routes
+    -Route Parameters
+    -Nested Routes
+    -Relative Paths
+    -Lazy Loading Routes
+    -Route Guards
+
+Ecosystem
+    
+    -State Management 
+        -ngRx

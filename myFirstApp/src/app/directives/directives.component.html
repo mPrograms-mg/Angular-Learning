@@ -1,0 +1,26 @@
+<h2>ngIf</h2>
+<div *ngIf="ngIfDirective; else elsePart">
+    <p>This is ngIf Directive</p>
+</div>
+
+<ng-template #elsePart>
+    <p>This is ngIf Else part</p>
+</ng-template>
+
+<button class="btn btn-primary" (click)="hideShow()">Click on Hide Show</button>
+
+<hr>
+
+<h2>ngFor</h2>
+
+<hr>
+
+<h2>ngStyle</h2>
+<p [ngStyle]="{backgroundColor:getColorStyle()}">This is ngStyle Status {{ getStyleStatus() }}</p>
+<p [ngStyle]="{'color':'yellow',backgroundColor:getColorStyle()}">This is ngStyle Status {{ getStyleStatus() }}</p>
+
+
+<hr>
+
+<h2>ngClass</h2>
+<p [ngClass]="{online: ngStyleStatus === 'online'}">This is ngClass Status {{ getStyleStatus() }}</p>

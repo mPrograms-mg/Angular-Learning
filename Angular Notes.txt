@@ -1,0 +1,654 @@
+How to Angular Work Behind the scenes
+
+1) Start with Angular.json file with various properties and configuration of your Angular project.
+      example:
+       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options":
+        }
+       }
+    - It has a reference to the main.ts file which tells the builder to start the app 
+
+2) MAIN.TS This file acts as the entry point of the application & In this file compile the code and create bundle
+3) From the main.ts file Angular bootstrapping the app with AppModule. This AppModule is defined in APP.MODULE.TS
+4) After App.module go to App Compnent app-root then Index.html file loaded in browser 
+
+Angular Create This JS File 
+  - vendor.js
+  - polyfills.js
+  - main.js
+  - runtime.js 
+  - styles.css
+
+Option 2
+if write npm run start expect of ng serve then go to package.json file run the app
+
+
+Property binding :
+It is property or attribute bindi in [] brackets
+
+Event Binding :
+Event binding lets you listen for and respond to  user actions such as keystrokes mouse movements, click and touches
+
+Two-way binding gives component in your application a way to share data. Use two way binding to listen for events and update values simultaneously between parent and child components
+[()]
+[(ngModule)]
+
+Directives : Directives are classes that add additional behaviour to elements in your App.Use Angular build-in directives to manage  forms lists styles and what  users see
+
+Comments
+ - Used with a template
+
+Attributes and Directives
+ - Change the appearance or behaviour of an element, component or another directive
+
+Structural Directives		
+ - Change the DOM layout by Adding and removing DOM elements
+
+
+Buil-in attribute directives
+ -NgClass
+ -NgStyle
+ -NgModel
+
+Built-in structural Directives
+ -NgIf
+ -NgFor
+ -NgSwitch
+
+ng-container	
+
+
+Pipes:
+Pipes are simple functions to use in template expression to accept an input value and return a transformed value.
+Pipes are useful because you can use them throughout your application, while only declaring each pipe once.
+| sign of pipe
+
+parent to child component
+@Input parent to child
+@Output child to parent with event
+Listen custom events
+
+
+Lifecycle Hook
+
+constructor() : first Called
+ngOnchanges() : call after constructor but having a @Input() Decoretor with value if you does not have any input change property ngOnchanges not called
+ngOnInit()    :  call after constructor
+ngOnDestroy() : call last once
+
+Form ReactiveForm , Dynamic form , method, 
+
+ng serve --host 192.168.100.84 --port 4200
+ng serve --open --host 192.168.100.84 --port 4200  --disable-host-check
+
+Important Event
+
+keyup
+keydown
+blur
+input
+mouseover
+mouseleave
+
+Get Text value and Print
+ 
+ 1)keyup onchange(change)
+ 2)button click
+
+Form
+Template-driven Form
+  ->Mostly work done in the Component Template
+
+Reactive Form
+ ->Mostly work done in the Component Class File
+
+
+->Template Class Service Database      
+Group of Form Control
+
+Reactive form method have get method property
+
+Form Array : way to manage collection of form Control in Angular
+
+Cuastom Validator and Error Codes
+Custom Async validator
+Value and Status changes event in form
+
+SetValue and Patch Value for use set and Update value
+
+Observable : 
+
+Observable is sending data in package formate, it is does not send all data at once
+
+setValue() =  SetValue requires that the object must match the structure of the FormGroup or FormArray exactly. Otherwise, it will result in an error.
+
+patchValue() = The PatchValue is used to update only a subset of the elements of the FormGroup or FormArray. It will only update the matching objects and ignores the rest.
+
+  
+//Angular Routing
+
+RouterLinkActive
+=>RouterLinkActive="active" : It is apply for css to the active the router class
+=>[RouterLinkActiveOptions]="{exact : true}" : Use to which exactly link are active 
+
+Navigate
+=>router.navigate("/",id) //also pass id in this
+=>router.navigateUrl('/')
+
+ActivatedRoute
+=>ActivedRoute = use for url id or name all that
+Ex (private route:ActivedRoute)
+this.route.snapshot.params['id'],
+this.route.snapshot.params['name'],
+this.route.paramMap.subcribe((param)=>{
+  param.get('id')
+})
+this.route.params.subcribe((data:Params)=>{
+  data['id']
+})
+
+Query Parametes and Fragment 
+=>Passing Query Parameters and Fragments to the Url Route :Query parameters in Angular allow for passing optional parameters across any route in the application
+[queryParams]={},
+[fragment]="'abc"
+retriview Query paramter
+using queryParams and fragment
+
+Nested and Child Route
+=>nested Route and child route
+{ path: 'product-details/:id', component: ProductDetails,
+    children: [
+      { path: '', component: Overview },
+      { path: 'specs', component: Specs }
+    ]
+  }
+
+Page Not Found
+{path: '**',redirectTo: 'not-found'}
+
+Routing Guards
+ =>canActivate guards  
+
+Async pipe => We use async pipe to handle asynchronous data in Angular. 
+
+{{ABC | async   }}
+
+Mistake Angular =>
+ Start
+ Focusing more on framework or library
+ Going in a Tutorial hell
+ Trying to learn everything in a sort span of time
+ Having Self Doubt
+ Not Focusing on Quality
+
+
+Tip for Angular Developer
+   -Typescript
+   -dependancy Injection
+   -state management
+   -Forms
+   -Change Detection
+
+Note => Rxjs work on push approch         
+
+  ngOnInit(): void {
+    // this.normalSubject();
+    // this.bahivorSubject();
+    // this.replaySubject();
+    // this.asyncSubject();
+  }
+
+  normalSubject() {
+    //Subject;
+    //Nomal Subject Example with api consume
+    const subject = new Subject();
+    const data = ajax('https://jsonplaceholder.typicode.com/users');
+
+    data.subscribe(subject);
+
+    subject.subscribe((d) => {
+      console.log('d :>> ', d);
+    });
+
+    subject.subscribe((a) => {
+      console.log('d :>> ', a);
+    });
+  }
+
+  bahivorSubject() {
+    const bSubject = new BehaviorSubject(12);
+    bSubject.subscribe((d) => {
+      console.log('Bahivor Subject Subscriber 1', d);
+    });
+    bSubject.next(200);
+    bSubject.subscribe((d) => {
+      console.log('Bahivor Subject Subscriber 2', d);
+    });
+  }
+
+  replaySubject() {
+    const $replaySubjectMsg = new ReplaySubject(3);
+    $replaySubjectMsg.next('Hello 1');
+    $replaySubjectMsg.next('Hello 2');
+    $replaySubjectMsg.next('Hello 3');
+    $replaySubjectMsg.next('Hello 4');
+    $replaySubjectMsg.next('Hello 5');
+    $replaySubjectMsg.next('Hello 6');
+    $replaySubjectMsg.next('Hello 7');
+    $replaySubjectMsg.next('Hello 8');
+    $replaySubjectMsg.next('Hello 9');
+    $replaySubjectMsg.next('Hello 10');
+
+    $replaySubjectMsg.subscribe((msg) => {
+      console.log('Msg  1', msg);
+    });
+
+    $replaySubjectMsg.subscribe((msg) => {
+      console.log('Msg  2', msg);
+    });
+  }
+
+  asyncSubject() {
+    const $aysncSubject = new AsyncSubject();
+    $aysncSubject.next('Async Value 1');
+    $aysncSubject.next('Async Value 2');
+    $aysncSubject.next('Async Value 3');
+    $aysncSubject.complete();
+    $aysncSubject.subscribe((a) => console.log('a :>> ', a));
+  }
+
+Main from group
+			from controls 
+			form controls	
+Form array 
+		form group
+			form controls
+End main form group 
+
+
+Top Rxjs Topic :
+Observable : 
+Subscriptions 
+Map
+switchMap
+Subject and Behaviour Subjects
+Combine
+combineLatest : conbine different streams of data
+
+DOM manipulate :
+Use AfterViewInit lifecycle method: @ViewChild(‘ ’) var name:
+Templete reference variable use  # in html element
+var name.nativeElement
+
+Simple method to subscribe observable
+post$ = service variable
+
+Store Api data in BehaviorSubject rxjs
+
+First Way::::
+
+Service.ts file 
+ callApi() {
+    return this.httpclient
+      .get('https://jsonplaceholder.typicode.com/posts')
+      .pipe(
+        tap((data) => {
+          this.subjectStatus$.next(data);
+        })
+      );
+  }
+
+App.ts file
+  this.formservice.callApi().subscribe((x) => {
+   console.log('App Component :>> ', x);
+  });
+
+Component.ts file
+
+ this.formservice.subjectStatus$.subscribe((anb) => {
+      console.log('anb :>> ', anb);
+      this.data = anb;
+    });
+
+
+Second Way::::
+Serviec.ts file
+secondeCall() {
+    return this.httpclient.get('https://jsonplaceholder.typicode.com/posts');
+  }
+
+ App.ts file
+    this.formservice.secondeCall().subscribe((res) => {
+     this.formservice.subjectStatus$.next(res);
+  });
+
+ this.formservice.subjectStatus$.subscribe((abc) => {
+     console.log('abc :>> ', abc);  
+     this.data = abc;
+    });
+
+Component.ts file
+ this.formservice.subjectStatus$.subscribe((anb) => {
+      console.log('anb :>> ', anb);
+      this.data = anb;
+    });
+
+Note
+Every child route required router-outlet in component.ts file
+
+Promise VS Observable
+
+1)Promise are gar and Observable are lazy
+2)Promise emit data only once, Observable can emit data multiple times
+3)In Case of Obs we have to unsubscribe , there is no need to unsubscribe
+
+
+Note ===> put $ sign to any observable and Subject declare variable
+
+Ex const Var$ = new Subject()
+=> Whenever you want to pass some data to  subject  we need to use next() method
+=> And Read Subject data use subscribe() method
+ 
+Subject and Their Types
+	
+Subject ===>Subject is normal observable and subject, Subject does’n hold  a value
+			  Normal Subject required next value after Subscription
+			  ex  const a = new Subject()
+					a.subscribe(b=>console.log(b))
+					a.next(Math.random())
+			
+			 and another way to use as observable or data consumer
+			ex	const subject = new Subject()
+				subject.			 
+
+BehaviorSubject ===>BehaviorSubject accept default value and also accept Genric type values <unkonwns>  ex BahaviorSubject<string>(‘ ’)
+					  BahaviorSubject get last publish value 
+					  Bahavior Subject hold one value When it is subscribed it emits the value immediately
+
+ 				 ex  const a = new BahaviorSubject<unknowns>(‘Default Value)
+					a.next(Math.random())
+					a.subscribe(b=>console.log(b))
+
+Reply Subject	     ===>  Replay subject is a variant of Subject, It emits/buffer old values and emit those values to new  Subscribers 
+					Reply Subject store also publish value and their buffer memory , Reply subject store how many value store their buffer memory ex ReplaySubject(2)
+						
+
+Async Subject    ===>  Async subject work on single value and they required  complete() method get value
+
+
+Tap Operator ==> Transparently perform actions or side-effects, such as logging.  
+             =>different actions without modify the data stream. When fetching data, then if need to perform any action.
+
+Take Operator  ==> When you are interested in only the first emission, you want to use take
+               ==>It is Take from First 
+               
+TakeLast Operator ==> It is Take from last
+
+TakeUntil Operator ==> use for unsubscribe observable until not getting response. Can use for complete and destroy observables after subscribe.
+
+FromEvent Operator ==> use for click event in document 
+
+
+from Operator ==> Turn an array, promise, or iterable into an observable
+              ==> The Rx from operator is used to transform data that can be iterated over to an observable.
+
+
+ng-Template      : ng-template is a template element that Angular uses with structural directives ( [ngIf] , [ngFor] , [ngSwitch] and custom directives).  It is used for rendering HTML. It can never display. It is virtual element and its contents are displayed only when needed based on condition
+ng-Content       : The ng-content is used when we want to insert the content dynamically inside the component that helps to increase component reusability. 
+ng-TemplateOutle : It is Use for Code Reusiblity
+ng-Container     : Especially when working with structural directives like ngIf, ngFor, etc. ng-conainter is not take space in  HTML DOM element in Angular
+ng-Class         : Adds and removes a set of CSS classes.
+ng-Style	       : Adds and removes a set of HTML styles.
+ng-Model	       : Adds two-way data binding to an HTML form element.
+  
+Notes = ng-conainter is not take space in  HTML DOM element in Angular 
+
+Standalone Component :  ng g pipe,component,service  --standalone , A component that is not part of ngModule.
+
+Different ways to  get input text value in Angular|Typescript
+
+  1)Two-way data binding with ngModel directive
+
+    Ex.
+    Html file
+      <p><input type="text" id="username" name="username" [(ngModel)]="username"></p>
+      <h1> {{username}}</h1>
+      <button type="button" (click)="clickme()">Clickme</button>
+
+    Ts File
+      username: string = '';
+      clickme() {
+         console.log('it does nothing',username);
+      }  
+    
+  2)One-way binding with the local reference object
+
+    Ex
+    Html File
+      <p><input type="text" id="username" name="username" #username></p>
+      <h1> {{username}}</h1>  
+      <button type="button" (click)="clickme(username.value)">Clickme</button>  
+
+    Ts file
+      clickme(username:string) {
+          console.log('it does nothing',username);
+      }
+
+3)Viewchild with local reference 2-way binding
+
+  Ex
+  Html File
+    <p><input type="text" id="username" name="username" #username></p>
+    <h1> {{myusername}}</h1>
+    <button type="button" (click)="clickme()">Clickme</button>
+
+  Ts File
+    @ViewChild('username', { static: true }) usernameElement: ElementRef;
+    myusername: string = "";
+    constructor(usernameElement: ElementRef) {
+      this.usernameElement = usernameElement;
+    }
+
+    clickme() {
+      this.myusername = this.usernameElement.nativeElement.value;
+      console.log('it does nothing', this.myusername);
+    }
+
+4)read input value in typescript
+
+  Ex
+  Html File
+    <input type="text" id="name" name="name">
+  
+  Ts File
+    this.myusername = (<HTMLInputElement>document.getElementById("username")).value;
+
+5)Reactive Form formControlName to read input text element on button click
+
+  Ex
+  Html file 
+      <form [formGroup]="nameForm">
+        <p><input type="text" id="name" name="name" formControlName="name"></p>
+      </form>
+  Ts File
+
+     public nameForm:FormGroup;
+     myusername: string = "";
+     constructor( private formBuilder: FormBuilder) {
+        this.nameForm = this.formBuilder.group({
+            name: ''
+        });
+      }
+
+    clickme(){
+      this.myusername=this.nameForm.get('name')?.value;
+      console.log('it does nothing', this.nameForm.get('name'));
+    }
+
+6)Input native events read values
+
+  Ex 
+  Html File
+    <p><input type="text" (blur)="blurEvent($event)">
+    </p>
+    <h1> {{myusername}}</h1>
+
+  Ts file
+   myusername: string = "";
+   blurEvent(event: any){
+      this.myusername = event.target.value;
+  }
+
+Note:  
+By default HTML input elements provide native events and Angular also supports these events to read input text elements in the controller. Following events, we can use
+
+onBlur event: client leaves from the input element
+
+onChange: Fired, when the input element value changed
+
+input event: fired when the user typed the data
+
+key events: fired when a key is entered, also we have keyUp and keyDown events
+
+Different Ways for Communication Between Components Angular|Typescript
+
+  1)@Input() and @Output() Decoretor parent to child
+  2)@Input() and @Output() child to parent using @Output() EventEmmit()
+  3)Child to parent - sharing data via ViewChild and AfterViewInit
+  4)Passing Data Through a Service Using Observables
+
+
+Search Funcnality()
+   this.formValue = this.searchForm?.valueChanges;
+   this.formValue
+        .pipe(
+          filter(() => this.searchForm.valid),
+          map((data) => data['searchTerm']),
+          debounceTime(500),
+          distinctUntilChanged(),
+          switchMap((data: any) => this.usersapiservice.getUserByName(data))
+        )
+        .subscribe((res) => {
+          console.log(res);
+          this.userDetails = res;
+          console.log('res :>> ', Object.keys(res).length);
+          this.searchCount = Object.keys(res).length;
+        });
+
+Custome pie command ----:ng g p pipeName        
+
+Angular Service by Dhananjay Kumar
+
+There are two types of Injector in Angular 1) Element Injector 2)Module Injector 
+Service are singleton 
+
+Html5 Validation for Reactive  and Template driven Form  .
+
+  minlength and maxlength
+  required
+  email
+  pattern
+
+  form.pristine   : 
+  form.dirty
+  form.valid      : return boolean value like true and false
+  form.invalid    : return boolean value like true and false
+  form.value      :
+
+
+pattern Validation with Rxjs
+export class GlobalConstants {
+  //Regex
+  public static nameRegex: string = '[a-zA-Z0-9]*';
+  public static userNameRegex: string = '/^[a-z0-9]*';
+  public static emailRegex: string = '/^[a-z0-9.]+@[a-z]+.[a-z]+$/';
+  public static contactNumberRegex: string = '^[e0-9]{10,10}$';   // RegExp('^\\d{10}$')
+  public static password: string =
+    '^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9]).{8,}$';
+  urlValidator  :new RegExp('(https?:\\/\\/)|(www\\.)');  
+  zip india :    expr: '^\\d{6}$',
+}
+//'/^[a-z0-9_.]+$'
+///^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*.-_]{8,}$/
+//[a-zA-Z0-9._%-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,3}
+
+
+//Deploy Angular or other Framework website Static website on github pages
+
+ 1) Create repo on github and upload code on github repo
+ 2) Install this npm package in your project ==> npm i gh-pages --save-dev
+ 3) Modifying package.json file
+      ex 
+          "name": "subject-practice",
+          "version": "0.0.0",
+          "homepage": "https://your git profile username.github.io/your git repo name",    like : https://mmk-Narola.github.io/Angular-CRUD
+ 4) Add other command in package.json script file 
+      For Angular (created with Angular CLI)         
+      ex
+          "scripts": {
+          "build": "ng build --output-path dist --base-href /angular-ghpages/",
+          "predeploy": "npm run build",
+          "deploy": "gh-pages -d dist"
+          }
+ 5) Upload code on git repo     // Note // make sure your code push on github pages
+ 6) Run this command in your terminal   //  npm run deploy    
+          
+
+
+Angular JIT and AOT     
+
+JIT : Just In Time Complier,
+
+AOT : Ahead of Time Complier
+
+Note: always on AOT Complier in our angular app, bydefault AOT Complier on in angular.json file
+
+Increase Performance in Angular Application
+
+Lazy loading: This technique loads modules as they are needed, instead of loading all modules at once, which can help improve the initial load time of the application.
+
+Ahead-of-Time (AOT) compilation: This technique pre-compiles the Angular templates at build time, instead of doing it at runtime. This can help improve the runtime performance of the application.
+
+Use the Angular CLI: The Angular CLI provides a set of tools that can help optimize the performance of your application, including AOT compilation, code splitting, and minification.
+
+Use a Content Delivery Network (CDN): A CDN can help reduce the load time of your application by caching the static assets, such as JavaScript and CSS files, and serving them from a location closer to the user.
+
+Use the Angular Performance Tools: Angular provides a set of tools, such as the Angular Profiler and the ng.probe() function, that can help you identify and fix performance bottlenecks in your application.
+
+Use OnPush Change Detection: By default, Angular runs change detection on all components in the application on every user event. OnPush change detection strategy only runs change detection on a component when the component's input properties or events change.
+
+Use web workers: Web workers allow you to run JavaScript code in a background thread, which can help improve the performance of your application by offloading computationally-intensive tasks from the main thread.
+
+
+put stackblitz url your github repo to open stackblitz online
+https://stackblitz.com/github/mmk-Narola/RxjsSubject
+
+Note: In angular all .ts file oops class file so everything in inner of class called properties
+
+Angular App Optimisation ===>
+
+Lazy Loading
+onPush Change Detection
+Use caching.
+Use the Ahead-of-Time (AOT) compiler  
+Minimize the number of components
+
+
+
+
+1. HTML Injection/Html Sanitization 
+2. Rate Limit on auth API's
+3. Force Browsing
+4. OTP Bypass through Response Manipulation.
+5. Unrestricted File Upload 
+6. Improper Error Handling.
+7. Insecure direct object references.
+8. Clickjacking → Login Page
+
+
+
+
+
+

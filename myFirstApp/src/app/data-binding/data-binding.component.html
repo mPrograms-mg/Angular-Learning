@@ -1,0 +1,15 @@
+<h2>String Interpolation</h2>
+<p>This is {{name}} and with number {{num}}</p>
+<hr>
+<h2>Property Binding</h2>
+<span [innerText]="allowProperty"></span>
+<button class="btn btn-primary" [disabled]="!allowProperty">This Button is Property Binding</button>
+<hr>
+
+<h2>Event Binding</h2>
+{{eventBindingTxt}}
+<button class="btn btn-secondary" (click)="onCreateEventBind()">Click on Event Button</button>
+<hr>
+<span>$Event in angular</span>
+<input type="text" name="" (input)="updateEvent($event)">
+{{eventName}}
